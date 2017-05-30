@@ -1,6 +1,8 @@
 import datetime
 
+from django.conf import settings
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
@@ -9,5 +11,12 @@ def index(request):
 
 def today_is(request):
     now = datetime.datetime.now()
-    html = "<html><body>Current date and time: {0}</body></html>".format(now)
-    return HttpResponse(html)
+    return render(
+        request,
+        'blog/datetime.html',
+        {
+            'now': now,
+            'template_name': 'blog/nav.html',
+            'base_dir': settings.BASE_DIR,
+        }
+    )
