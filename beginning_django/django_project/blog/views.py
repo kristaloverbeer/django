@@ -1,22 +1,17 @@
-import datetime
-
-from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from .models import Post
 
 
 def index(request):
     return HttpResponse("Hello Django")
 
 
-def today_is(request):
-    now = datetime.datetime.now()
+def post_list(request):
+    posts = Post.objects.all()
     return render(
         request,
-        'blog/datetime.html',
-        {
-            'now': now,
-            'template_name': 'blog/nav.html',
-            'base_dir': settings.BASE_DIR,
-        }
+        'blog/post_lis.html',
+        {'posts': posts}
     )
