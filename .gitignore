@@ -99,3 +99,4 @@ ENV/
 
 # mypy
 .mypy_cache/
+/test_driven_development/superlists/db.sqlite3
